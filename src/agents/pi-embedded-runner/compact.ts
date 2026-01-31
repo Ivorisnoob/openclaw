@@ -384,7 +384,6 @@ export async function compactEmbeddedPiSessionDirect(
         sandboxEnabled: !!sandbox?.enabled,
       });
 
-      let session: Awaited<ReturnType<typeof createAgentSession>>["session"];
       const resourceLoader = new DefaultResourceLoader({
         cwd: resolvedWorkspace,
         agentDir,
@@ -396,7 +395,7 @@ export async function compactEmbeddedPiSessionDirect(
       });
       await resourceLoader.reload();
 
-      ({ session } = await createAgentSession({
+      const { session } = await createAgentSession({
         cwd: resolvedWorkspace,
         agentDir,
         authStorage,
@@ -408,7 +407,7 @@ export async function compactEmbeddedPiSessionDirect(
         sessionManager,
         settingsManager,
         resourceLoader,
-      }));
+      });
 
       try {
         const prior = await sanitizeSessionHistory({

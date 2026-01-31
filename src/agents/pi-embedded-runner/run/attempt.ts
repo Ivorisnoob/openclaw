@@ -462,6 +462,7 @@ export async function runEmbeddedAttempt(
         agentsFilesOverride: () => ({ agentsFiles: [] }),
       });
       await resourceLoader.reload();
+
       ({ session } = await createAgentSession({
         cwd: resolvedWorkspace,
         agentDir,
